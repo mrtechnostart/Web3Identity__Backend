@@ -21,14 +21,29 @@ contract FundMeDeployer {
         s_deployers.push(msg.sender);
         emit FundMe__Deployed(newFundMe,mineth);
     }
+    /* Getter Functions */
+
 
     function getDeployers(uint256 _index) public view returns(address){
         return s_deployers[_index];
     }
-
-    
     function getContracts(address _addr) public view returns(address){
         return s_contracts[_addr];
+    }
+
+    /* Fund Me Handlers */
+    function fundContract(address _addr) public payable{
+        FundMe CurrentContract = FundMe(s_contracts[_addr]);
+        CurrentContract.fundContract{value: msg.value}();
+    }
+
+    function getMinEth(address _addr) public view returns(uint256){
+        return FundMe(s_contracts[_addr]).getmineth();
+    }
+
+    function withdrawFund(address _addr) public{
+        FundMe CurrentContract = FundMe(s_contracts[_addr]);
+        CurrentContract.withdrawFund(msg.sender);
     }
 
 }

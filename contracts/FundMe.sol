@@ -29,11 +29,11 @@ contract FundMe{
         emit ContractFund(msg.sender);
     }
 
-    function withdrawFund() public {
+    function withdrawFund(address _owner) public {
         if (address(this).balance < i_mineth){
             revert NoETH__FundWithdraw();
         }
-        if (msg.sender != i_deployer){
+        if (_owner != i_deployer){
             revert NotOwner__FundWithdraw();
         }
         (bool success, ) = i_deployer.call{value: address(this).balance}("");
