@@ -30,6 +30,9 @@ contract FundMeDeployer {
     function getContracts(address _addr) public view returns(address){
         return s_contracts[_addr];
     }
+    function getNumberOfDeployers() public view returns(uint256){
+        return s_deployers.length;
+    }
 
     /* Fund Me Handlers */
     function fundContract(address _addr) public payable{
