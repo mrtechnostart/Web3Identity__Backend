@@ -47,6 +47,9 @@ contract FundMe{
     function getDeployer() public view returns(address deployer){
         deployer = i_deployer;
     }
+    function numberOfDonaters() public view returns (uint256){
+        return s_donaters.length;
+    }
     function getmineth() public view returns(uint256 mineth){
         mineth = i_mineth;
     }

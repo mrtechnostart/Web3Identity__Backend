@@ -41,6 +41,10 @@ contract FundMeDeployer {
         return FundMe(s_contracts[_addr]).getmineth();
     }
 
+    function getNumberOfDonaters(address _addr) public view returns(uint256){
+        return FundMe(s_contracts[_addr]).numberOfDonaters();
+    }
+
     function withdrawFund(address _addr) public{
         FundMe CurrentContract = FundMe(s_contracts[_addr]);
         CurrentContract.withdrawFund(msg.sender);
