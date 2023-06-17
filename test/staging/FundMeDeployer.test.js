@@ -3,7 +3,7 @@ const { deployments, getNamedAccounts, ethers } = require("hardhat")
 const { log } = deployments
 const MIN_ETH = ethers.utils.parseEther("0.001")
 describe("FundMeDeployer", () => {
-    let FundMe, FundMeDeployer, deployer,player
+    let FundMeDeployer, deployer,player
     beforeEach(async () => {
         deployer = (await getNamedAccounts()).deployer
         player = (await getNamedAccounts()).player

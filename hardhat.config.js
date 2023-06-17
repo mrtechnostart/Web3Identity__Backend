@@ -8,7 +8,8 @@ require("dotenv").config()
 
 /** @type import('hardhat/config').HardhatUserConfig */
 const SEPOLIA_RPC_URL = process.env.SEPOLIA_RPC_URL
-const PRIVATE_KEY = process.env.SEPOLIA_PRIVATE_KEY
+const PRIVATE_KEY_PRIMARY = process.env.SEPOLIA_PRIVATE_KEY1
+const PRIVATE_KEY_SECONDARY = process.env.SEPOLIA_PRIVATE_KEY2
 
 module.exports = {
     solidity: "0.8.18",
@@ -16,7 +17,7 @@ module.exports = {
         sepolia: {
             /* Get your RPC URL from alchemy */
             url: SEPOLIA_RPC_URL,
-            accounts: [PRIVATE_KEY],
+            accounts: [PRIVATE_KEY_PRIMARY,PRIVATE_KEY_SECONDARY],
             chainId: 11155111,
             blockConfirmation: 6,
         },
