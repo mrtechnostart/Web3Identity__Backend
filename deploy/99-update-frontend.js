@@ -1,19 +1,25 @@
-const { frontEndContractsFile, frontEndAbiFile } = require("../helper-hardhat-config")
+const { frontEndContractsFile, frontEndAbiFile,frontEndAbiFileFundMe } = require("../helper-hardhat-config")
 const fs = require("fs")
-const { network } = require("hardhat")
+const { network, ethers } = require("hardhat")
 
 module.exports = async () => {
     if (process.env.UPDATE_FRONT_END) {
         console.log("Writing to front end...")
         await updateContractAddresses()
-        await updateAbi()
+        await updateAbiFundMeDeployer()
+        await updateAbiFundMe()
         console.log("Front end written!")
     }
 }
 
-async function updateAbi() {
+async function updateAbiFundMeDeployer() {
     const raffle = await ethers.getContract("FundMeDeployer")
     fs.writeFileSync(frontEndAbiFile, raffle.interface.format(ethers.utils.FormatTypes.json))
+}
+
+async function updateAbiFundMe(){
+    const FundMe = await ethers.getContract("FundMe")
+    fs.writeFileSync(frontEndAbiFileFundMe, FundMe.interface.format(ethers.utils.FormatTypes.json))
 }
 
 async function updateContractAddresses() {
