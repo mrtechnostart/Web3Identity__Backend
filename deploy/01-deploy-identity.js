@@ -13,7 +13,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         log: true,
         waitConfirmations: network.config.blockConfirmations || 1,
     })
-    if (process.env.UPDATE_FRONT_END && network.config.chainId==31337){
+    if (process.env.UPDATE_FRONT_END){
         log("Deploying FundMe Now!")
         await deploy("FundMe",{
             from:deployer,
